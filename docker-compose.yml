@@ -1,0 +1,66 @@
+services:
+  api:
+    build: .
+    container_name: intelligent-mailroom-api
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      APP_ENV: production
+      MAARCH_URL: ${MAARCH_DOCKER_URL:-http://host.docker.internal:8081}
+      AUDIT_DB_PATH: /app/data/audit.db
+    volumes:
+      - mailroom-data:/app/data
+      - mailroom-logs:/app/logs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://127.0.0.1:8000/api/v1/health/live",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  worker:
+    build: .
+    container_name: intelligent-mailroom-worker
+    restart: unless-stopped
+    command: ["python", "-m", "src.workers.email_worker"]
+    env_file:
+      - .env
+    environment:
+      APP_ENV: production
+      MAARCH_URL: ${MAARCH_DOCKER_URL:-http://host.docker.internal:8081}
+      AUDIT_DB_PATH: /app/data/audit.db
+    volumes:
+      - mailroom-data:/app/data
+      - mailroom-logs:/app/logs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: intelligent-mailroom-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  mailroom-data:
+  mailroom-logs:

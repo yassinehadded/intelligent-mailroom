@@ -1,0 +1,22 @@
+{
+  "title": "Journaux",
+  "description": "Chronologie d'audit depuis GET /api/v1/audit/events.",
+  "timelineTitle": "Chronologie d'audit",
+  "eventsCount": "{{count}} événements",
+  "auditDisabled": "Journal d'audit désactivé",
+  "searchPlaceholder": "Rechercher dans les journaux...",
+  "maarchResource": "Ressource Maarch n°{{id}}",
+  "csvHeaders": {
+    "timestamp": "Horodatage",
+    "level": "Niveau",
+    "subject": "Objet",
+    "sender": "Expéditeur",
+    "message": "Message",
+    "maarchId": "ID Maarch",
+    "error": "Erreur"
+  },
+  "empty": {
+    "title": "Aucun événement",
+    "description": "Les événements d'audit apparaîtront ici au fur et à mesure du traitement des courriels."
+  }
+}

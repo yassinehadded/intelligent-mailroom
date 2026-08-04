@@ -1,0 +1,23 @@
+{
+  "title": "Intégration Maarch",
+  "description": "Statut de connexion, entités et métadonnées de référence du client Maarch existant.",
+  "connection": "Connexion",
+  "connectionSource": "GET /api/v1/maarch/connection",
+  "authentication": "Authentification",
+  "authenticationSource": "GET /api/v1/maarch/health",
+  "entities": "Entités",
+  "entitiesCount": "{{count}} entités disponibles pour le routage",
+  "referenceMetadata": "Métadonnées de référence",
+  "referenceDescription": "Modèles d'indexation, statuts, priorités, valeurs par défaut",
+  "fields": {
+    "connected": "Connecté",
+    "webserviceReady": "WebService prêt",
+    "currentUser": "Utilisateur actuel",
+    "application": "Application",
+    "authMode": "Mode d'authentification",
+    "maarchUrl": "URL Maarch",
+    "defaults": "Valeurs par défaut",
+    "indexingModels": "Modèles d'indexation"
+  },
+  "defaultsSummary": "Modèle {{modelId}} · Statut {{status}} · Pièce jointe {{attachmentType}}"
+}

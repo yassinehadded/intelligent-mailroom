@@ -1,0 +1,32 @@
+{
+  "title": "Processed Documents",
+  "description": "Successful ingestions from the audit trail.",
+  "registryTitle": "Document registry",
+  "registryCount": "{{count}} processed documents",
+  "searchPlaceholder": "Search reference, subject, sender, Maarch ID...",
+  "columns": {
+    "reference": "Reference",
+    "subject": "Subject",
+    "sender": "Sender",
+    "destination": "Destination",
+    "maarchId": "Maarch ID",
+    "processingDate": "Processing Date",
+    "category": "Category",
+    "confidence": "Confidence",
+    "status": "Status"
+  },
+  "csvHeaders": {
+    "reference": "Reference",
+    "subject": "Subject",
+    "sender": "Sender",
+    "destination": "Destination",
+    "maarchId": "Maarch ID",
+    "processingDate": "Processing Date",
+    "category": "Category",
+    "confidence": "Confidence"
+  },
+  "empty": {
+    "title": "No processed documents",
+    "description": "Documents appear here after successful email ingestion into Maarch."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Dashboard",
+  "description": "Live overview of mail ingestion, AI routing, and Maarch integration.",
+  "processingMailbox": "Processing mailbox",
+  "processingDescription": "Live progress for the current poll operation.",
+  "cards": {
+    "maarchStatus": "Maarch Status",
+    "emailStatus": "Email Status",
+    "aiStatus": "AI Status",
+    "workerStatus": "Worker / Readiness",
+    "unreadEmails": "Unread Emails",
+    "processedToday": "Processed Today",
+    "recentErrors": "Recent Errors",
+    "pendingQueue": "Pending Queue"
+  },
+  "metrics": {
+    "unreadDescription": "From IMAP health check",
+    "processedDescription": "Successful ingestions in audit log",
+    "errorsDescription": "Failed events in recent audit history",
+    "pendingDescription": "Unseen messages waiting for poll"
+  },
+  "recentActivity": {
+    "title": "Recent Activity",
+    "description": "Latest audit events from ingestion pipeline.",
+    "empty": "No audit events yet. Run a mailbox poll to populate activity."
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "description": "Common operator tasks backed by existing API endpoints.",
+    "openEmail": "Open Email Monitoring",
+    "testMaarch": "Test Maarch Connection",
+    "workerNote": "Background worker monitoring is inferred from readiness checks. Start/stop is managed via Docker Compose."
+  }
+}

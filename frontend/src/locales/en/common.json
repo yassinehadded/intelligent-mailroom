@@ -1,0 +1,103 @@
+{
+  "appName": "Intelligent Mailroom",
+  "appSubtitle": "Operations Console",
+  "appTagline": "Enterprise mail automation for Maarch Courrier",
+  "yes": "Yes",
+  "no": "No",
+  "enabled": "Enabled",
+  "disabled": "Disabled",
+  "notConfigured": "Not configured",
+  "checking": "Checking...",
+  "configured": "Configured",
+  "unavailable": "Unavailable",
+  "systemLabel": "System",
+  "emptyValue": "—",
+  "language": {
+    "label": "Language",
+    "current": "Current language: {{language}}"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "email": "Email",
+    "ai": "AI Classification",
+    "documents": "Processed Documents",
+    "maarch": "Maarch",
+    "settings": "Settings",
+    "logs": "Logs"
+  },
+  "buttons": {
+    "pollNow": "Poll Now",
+    "refresh": "Refresh",
+    "openMaarch": "Open Maarch",
+    "viewAll": "View all",
+    "selectAll": "Select All",
+    "process": "Process",
+    "exportCsv": "Export CSV",
+    "downloadLogs": "Download logs",
+    "reloadMetadata": "Reload Metadata",
+    "runClassification": "Run Classification"
+  },
+  "maarchStatus": {
+    "INIT": "Init",
+    "NEW": "New",
+    "COU": "Correspondence",
+    "VAL": "Validation",
+    "END": "Closed",
+    "RET": "Returned"
+  },
+  "category": {
+    "invoice": "Invoice",
+    "hr": "Human Resources",
+    "legal": "Legal",
+    "it": "IT / DSI",
+    "technical": "Technical Services",
+    "social": "Social Services",
+    "general": "General Correspondence",
+    "contract": "Contract",
+    "complaint": "Complaint",
+    "request": "Request",
+    "finance": "Finance"
+  },
+  "system": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "running": "Running",
+    "stopped": "Stopped",
+    "ready": "Ready",
+    "degraded": "Degraded",
+    "processing": "Processing",
+    "completed": "Completed",
+    "failed": "Failed",
+    "pending": "Pending",
+    "healthy": "Healthy",
+    "alive": "Alive",
+    "configured": "Configured",
+    "not_configured": "Not configured",
+    "skipped": "Skipped",
+    "ingested": "Processed"
+  },
+  "eventType": {
+    "ingested": "Processed",
+    "failed": "Failed",
+    "skipped": "Skipped",
+    "all": "All"
+  },
+  "poll": {
+    "steps": {
+      "connecting": "Connecting to mailbox...",
+      "downloading": "Downloading emails...",
+      "extracting": "Extracting attachments...",
+      "ocr": "Running OCR...",
+      "classifying": "Classifying documents...",
+      "routing": "Routing to destination...",
+      "uploading": "Uploading to Maarch...",
+      "completed": "Completed."
+    },
+    "success": "Poll complete: {{ingested}} ingested, {{skipped}} skipped",
+    "failed": "Poll failed"
+  },
+  "engine": "{{provider}} engine"
+}

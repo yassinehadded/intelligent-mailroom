@@ -1,0 +1,103 @@
+{
+  "appName": "Courrier Intelligent",
+  "appSubtitle": "Console d'exploitation",
+  "appTagline": "Automatisation du courrier entrant pour Maarch Courrier",
+  "yes": "Oui",
+  "no": "Non",
+  "enabled": "Activé",
+  "disabled": "Désactivé",
+  "notConfigured": "Non configuré",
+  "checking": "Vérification...",
+  "configured": "Configuré",
+  "unavailable": "Indisponible",
+  "systemLabel": "Système",
+  "emptyValue": "—",
+  "language": {
+    "label": "Langue",
+    "current": "Langue actuelle : {{language}}"
+  },
+  "theme": {
+    "toggle": "Changer de thème"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "email": "Courriel",
+    "ai": "Classification IA",
+    "documents": "Documents traités",
+    "maarch": "Maarch",
+    "settings": "Paramètres",
+    "logs": "Journaux"
+  },
+  "buttons": {
+    "pollNow": "Interroger",
+    "refresh": "Actualiser",
+    "openMaarch": "Ouvrir Maarch",
+    "viewAll": "Tout afficher",
+    "selectAll": "Tout sélectionner",
+    "process": "Traiter",
+    "exportCsv": "Exporter CSV",
+    "downloadLogs": "Télécharger les journaux",
+    "reloadMetadata": "Recharger les métadonnées",
+    "runClassification": "Lancer la classification"
+  },
+  "maarchStatus": {
+    "INIT": "Initialisation",
+    "NEW": "Nouveau",
+    "COU": "Correspondance",
+    "VAL": "Validation",
+    "END": "Clôturé",
+    "RET": "Retourné"
+  },
+  "category": {
+    "invoice": "Facture",
+    "hr": "Ressources humaines",
+    "legal": "Juridique",
+    "it": "Informatique / DSI",
+    "technical": "Services techniques",
+    "social": "Action sociale",
+    "general": "Correspondance générale",
+    "contract": "Contrat",
+    "complaint": "Réclamation",
+    "request": "Demande",
+    "finance": "Finance"
+  },
+  "system": {
+    "connected": "Connecté",
+    "disconnected": "Déconnecté",
+    "running": "En cours",
+    "stopped": "Arrêté",
+    "ready": "Prêt",
+    "degraded": "Dégradé",
+    "processing": "Traitement",
+    "completed": "Terminé",
+    "failed": "Échec",
+    "pending": "En attente",
+    "healthy": "En bonne santé",
+    "alive": "Actif",
+    "configured": "Configuré",
+    "not_configured": "Non configuré",
+    "skipped": "Ignoré",
+    "ingested": "Traité"
+  },
+  "eventType": {
+    "ingested": "Traité",
+    "failed": "Échec",
+    "skipped": "Ignoré",
+    "all": "Tous"
+  },
+  "poll": {
+    "steps": {
+      "connecting": "Connexion à la boîte aux lettres...",
+      "downloading": "Téléchargement des courriels...",
+      "extracting": "Extraction des pièces jointes...",
+      "ocr": "OCR en cours...",
+      "classifying": "Classification des documents...",
+      "routing": "Acheminement vers la destination...",
+      "uploading": "Envoi vers Maarch...",
+      "completed": "Terminé."
+    },
+    "success": "Interrogation terminée : {{ingested}} traités, {{skipped}} ignorés",
+    "failed": "Échec de l'interrogation"
+  },
+  "engine": "Moteur {{provider}}"
+}

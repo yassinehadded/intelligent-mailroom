@@ -1,0 +1,22 @@
+{
+  "title": "Logs",
+  "description": "Audit timeline from GET /api/v1/audit/events.",
+  "timelineTitle": "Audit timeline",
+  "eventsCount": "{{count}} events",
+  "auditDisabled": "Audit logging disabled",
+  "searchPlaceholder": "Search logs...",
+  "maarchResource": "Maarch resource #{{id}}",
+  "csvHeaders": {
+    "timestamp": "Timestamp",
+    "level": "Level",
+    "subject": "Subject",
+    "sender": "Sender",
+    "message": "Message",
+    "maarchId": "Maarch ID",
+    "error": "Error"
+  },
+  "empty": {
+    "title": "No log events",
+    "description": "Audit events will appear here as emails are processed."
+  }
+}

@@ -1,0 +1,66 @@
+{
+    "config": {
+        "lang": "fr",
+        "applicationName": "COURRIER DEMO",
+        "cookieTime": 10080,
+        "idleTime": 10080,
+        "timezone": "Europe/Paris",
+        "maarchDirectory": "/var/www/html/MaarchCourrier/",
+        "customID": "",
+        "maarchUrl": "http://localhost:8081/",
+        "lockAdvancedPrivileges": true
+    },
+    "database": [
+        {
+            "server": "maarch-postgres",
+            "port": "5432",
+            "type": "POSTGRESQL",
+            "name": "maarch",
+            "user": "maarch",
+            "password": "maarch"
+        }
+    ],
+    "signatureBook": {
+        "userWS": "superadmin",
+        "passwordWS": "superadmin",
+        "validatedStatus": "EENV",
+        "validatedStatusOnlyVisa": "EENV",
+        "refusedStatus": "REJ_SIGN",
+        "validatedStatusAnnot": "COU",
+        "refusedStatusAnnot": "RET"
+    },
+    "exportSeda": {
+        "sae": "MaarchRM",
+        "token": "",
+        "urlSAEService": "",
+        "senderOrgRegNumber": "",
+        "accessRuleCode": "",
+        "certificateSSL": "",
+        "userAgent": "service",
+        "statusReplyReceived": "REPLY_SEDA",
+        "statusReplyRejected": "REPLY_SEDA",
+        "statusMailToPurge": "REPLY_SEDA"
+    },
+    "log": {
+        "enable": true,
+        "dateTimeFormat": "d/m/Y H:i:s",
+        "logFonctionnel": {
+            "level": "ERROR",
+            "file": "./fonctionnel.log",
+            "maxFileSize": "10MB",
+            "maxBackupFiles": 10
+        },
+        "logTechnique": {
+            "level": "ERROR",
+            "file": "./technique.log",
+            "maxFileSize": "10MB",
+            "maxBackupFiles": 10
+        },
+        "queries": {
+            "level": "ERROR",
+            "file": "./queries.log",
+            "maxFileSize": "10MB",
+            "maxBackupFiles": 10
+        }
+    }
+}

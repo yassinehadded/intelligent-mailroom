@@ -1,0 +1,32 @@
+{
+  "title": "Documents traités",
+  "description": "Ingestions réussies issues du journal d'audit.",
+  "registryTitle": "Registre des documents",
+  "registryCount": "{{count}} documents traités",
+  "searchPlaceholder": "Rechercher référence, objet, expéditeur, ID Maarch...",
+  "columns": {
+    "reference": "Référence",
+    "subject": "Objet",
+    "sender": "Expéditeur",
+    "destination": "Destination",
+    "maarchId": "ID Maarch",
+    "processingDate": "Date de traitement",
+    "category": "Catégorie",
+    "confidence": "Confiance",
+    "status": "Statut"
+  },
+  "csvHeaders": {
+    "reference": "Référence",
+    "subject": "Objet",
+    "sender": "Expéditeur",
+    "destination": "Destination",
+    "maarchId": "ID Maarch",
+    "processingDate": "Date de traitement",
+    "category": "Catégorie",
+    "confidence": "Confiance"
+  },
+  "empty": {
+    "title": "Aucun document traité",
+    "description": "Les documents apparaissent ici après une ingestion courriel réussie dans Maarch."
+  }
+}

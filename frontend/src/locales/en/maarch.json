@@ -1,0 +1,23 @@
+{
+  "title": "Maarch Integration",
+  "description": "Connection status, entities, and reference metadata from the existing Maarch client.",
+  "connection": "Connection",
+  "connectionSource": "GET /api/v1/maarch/connection",
+  "authentication": "Authentication",
+  "authenticationSource": "GET /api/v1/maarch/health",
+  "entities": "Entities",
+  "entitiesCount": "{{count}} entities available for routing",
+  "referenceMetadata": "Reference metadata",
+  "referenceDescription": "Indexing models, statuses, priorities, defaults",
+  "fields": {
+    "connected": "Connected",
+    "webserviceReady": "WebService ready",
+    "currentUser": "Current user",
+    "application": "Application",
+    "authMode": "Auth mode",
+    "maarchUrl": "Maarch URL",
+    "defaults": "Defaults",
+    "indexingModels": "Indexing models"
+  },
+  "defaultsSummary": "Model {{modelId}} · Status {{status}} · Attachment {{attachmentType}}"
+}

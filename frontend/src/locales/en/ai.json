@@ -1,0 +1,38 @@
+{
+  "title": "AI Classification",
+  "description": "Routing rules and live classification preview using the existing analysis API.",
+  "provider": "Provider",
+  "ocr": "OCR",
+  "minConfidence": "Min Confidence",
+  "openai": "OpenAI",
+  "openaiConfigured": "Configured",
+  "openaiNotConfigured": "Not configured",
+  "routingRules": "Routing rules",
+  "routingRulesSource": "Loaded from GET /api/v1/analysis/routing-rules",
+  "keywords": "Keywords: {{value}}",
+  "defaultFallback": "Default fallback",
+  "doctypeKeywords": "Doctype keywords: {{keywords}} · default doctype {{id}}",
+  "playground": "Classification playground",
+  "playgroundSource": "POST /api/v1/analysis/classify",
+  "placeholders": {
+    "sender": "Sender email",
+    "subject": "Subject",
+    "body": "Body text"
+  },
+  "samples": {
+    "subject": "Supplier invoice January",
+    "body": "Please find attached invoice #2026-014 for IT services.",
+    "sender": "accounting@supplier.com"
+  },
+  "decision": "Decision",
+  "fields": {
+    "category": "Category",
+    "destination": "Destination",
+    "doctype": "Doctype",
+    "confidence": "Confidence",
+    "method": "Method"
+  },
+  "noReasoning": "No reasoning returned.",
+  "ocrSource": "OCR source: {{source}}",
+  "preview": "Preview: {{text}}"
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Tableau de bord",
+  "description": "Vue en direct de l'ingestion du courrier, du routage IA et de l'intégration Maarch.",
+  "processingMailbox": "Traitement de la boîte aux lettres",
+  "processingDescription": "Progression en direct de l'interrogation en cours.",
+  "cards": {
+    "maarchStatus": "Statut Maarch",
+    "emailStatus": "Statut courriel",
+    "aiStatus": "Statut IA",
+    "workerStatus": "Worker / Disponibilité",
+    "unreadEmails": "Courriels non lus",
+    "processedToday": "Traités aujourd'hui",
+    "recentErrors": "Erreurs récentes",
+    "pendingQueue": "File d'attente"
+  },
+  "metrics": {
+    "unreadDescription": "Depuis le contrôle de santé IMAP",
+    "processedDescription": "Ingestions réussies dans le journal d'audit",
+    "errorsDescription": "Événements en échec dans l'historique récent",
+    "pendingDescription": "Messages non lus en attente d'interrogation"
+  },
+  "recentActivity": {
+    "title": "Activité récente",
+    "description": "Derniers événements d'audit du pipeline d'ingestion.",
+    "empty": "Aucun événement d'audit. Lancez une interrogation pour alimenter l'activité."
+  },
+  "quickActions": {
+    "title": "Actions rapides",
+    "description": "Tâches courantes des opérateurs via les API existantes.",
+    "openEmail": "Ouvrir la surveillance courriel",
+    "testMaarch": "Tester la connexion Maarch",
+    "workerNote": "La surveillance du worker est déduite des contrôles de disponibilité. Le démarrage/arrêt se fait via Docker Compose."
+  }
+}

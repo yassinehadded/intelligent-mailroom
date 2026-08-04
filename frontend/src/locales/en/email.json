@@ -1,0 +1,27 @@
+{
+  "title": "Email Monitoring",
+  "description": "Mailbox connection, polling, and ingestion history from audit events.",
+  "mailbox": "Mailbox",
+  "imapHealth": "IMAP Health",
+  "selection": "Selection",
+  "selectedCount": "{{count}} selected",
+  "unseenMessages": "Unseen messages: {{count}}",
+  "limit": "limit {{count}}",
+  "liveProcessing": "Live processing",
+  "historyTitle": "Ingestion history",
+  "historyDescription": "The backend does not expose a live mailbox listing yet. This table reflects audit events from processed emails.",
+  "searchPlaceholder": "Search sender, subject, category...",
+  "columns": {
+    "sender": "Sender",
+    "subject": "Subject",
+    "received": "Received",
+    "status": "Status",
+    "aiCategory": "AI Category",
+    "destination": "Destination",
+    "confidence": "Confidence"
+  },
+  "empty": {
+    "title": "No processed emails yet",
+    "description": "Run Poll Now to ingest unseen messages from the configured mailbox."
+  }
+}

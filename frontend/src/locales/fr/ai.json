@@ -1,0 +1,38 @@
+{
+  "title": "Classification IA",
+  "description": "Règles de routage et aperçu de classification via l'API d'analyse existante.",
+  "provider": "Fournisseur",
+  "ocr": "OCR",
+  "minConfidence": "Confiance minimale",
+  "openai": "OpenAI",
+  "openaiConfigured": "Configuré",
+  "openaiNotConfigured": "Non configuré",
+  "routingRules": "Règles de routage",
+  "routingRulesSource": "Chargé depuis GET /api/v1/analysis/routing-rules",
+  "keywords": "Mots-clés : {{value}}",
+  "defaultFallback": "Repli par défaut",
+  "doctypeKeywords": "Mots-clés type document : {{keywords}} · type par défaut {{id}}",
+  "playground": "Bac à sable de classification",
+  "playgroundSource": "POST /api/v1/analysis/classify",
+  "placeholders": {
+    "sender": "Courriel de l'expéditeur",
+    "subject": "Objet",
+    "body": "Corps du message"
+  },
+  "samples": {
+    "subject": "Facture fournisseur janvier",
+    "body": "Veuillez trouver ci-joint la facture n°2026-014 relative aux prestations informatiques.",
+    "sender": "compta@fournisseur.fr"
+  },
+  "decision": "Décision",
+  "fields": {
+    "category": "Catégorie",
+    "destination": "Destination",
+    "doctype": "Type de document",
+    "confidence": "Confiance",
+    "method": "Méthode"
+  },
+  "noReasoning": "Aucun raisonnement retourné.",
+  "ocrSource": "Source OCR : {{source}}",
+  "preview": "Aperçu : {{text}}"
+}

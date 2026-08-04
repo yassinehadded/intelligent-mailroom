@@ -1,0 +1,27 @@
+{
+  "title": "Surveillance courriel",
+  "description": "Connexion à la boîte aux lettres, interrogation et historique d'ingestion depuis les événements d'audit.",
+  "mailbox": "Boîte aux lettres",
+  "imapHealth": "Santé IMAP",
+  "selection": "Sélection",
+  "selectedCount": "{{count}} sélectionné(s)",
+  "unseenMessages": "Messages non lus : {{count}}",
+  "limit": "limite {{count}}",
+  "liveProcessing": "Traitement en direct",
+  "historyTitle": "Historique d'ingestion",
+  "historyDescription": "Le backend n'expose pas encore la liste en direct de la boîte aux lettres. Ce tableau reprend les événements d'audit des courriels traités.",
+  "searchPlaceholder": "Rechercher expéditeur, objet, catégorie...",
+  "columns": {
+    "sender": "Expéditeur",
+    "subject": "Objet",
+    "received": "Reçu le",
+    "status": "Statut",
+    "aiCategory": "Catégorie IA",
+    "destination": "Destination",
+    "confidence": "Confiance"
+  },
+  "empty": {
+    "title": "Aucun courriel traité",
+    "description": "Lancez Interroger pour ingérer les messages non lus de la boîte configurée."
+  }
+}
