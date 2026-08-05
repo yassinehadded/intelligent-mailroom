@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { HelpCircle, Menu } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ const mobileNav = [
   { to: "/maarch", labelKey: "nav.maarch" },
   { to: "/settings", labelKey: "nav.settings" },
   { to: "/logs", labelKey: "nav.logs" },
+  { to: "/help", labelKey: "nav.help" },
 ] as const;
 
 export function Header({
@@ -43,6 +44,20 @@ export function Header({
           <p className="text-sm text-muted-foreground">{t("appTagline")}</p>
         </div>
         <div className="flex shrink-0 items-center gap-2">
+          <NavLink
+            to="/help"
+            className={({ isActive }) =>
+              cn(
+                "inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors",
+                isActive
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border bg-card text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+              )
+            }
+          >
+            <HelpCircle className="h-4 w-4 text-primary" />
+            <span className="hidden sm:inline">{t("nav.help")}</span>
+          </NavLink>
           <LanguageSwitcher />
           <ThemeToggle dark={dark} onToggle={onToggleTheme} />
         </div>

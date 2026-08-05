@@ -26,7 +26,8 @@
     "documents": "Processed Documents",
     "maarch": "Maarch",
     "settings": "Settings",
-    "logs": "Logs"
+    "logs": "Logs",
+    "help": "Help Center"
   },
   "buttons": {
     "pollNow": "Poll Now",

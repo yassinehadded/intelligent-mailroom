@@ -1,0 +1,135 @@
+{
+  "title": "Help Center & Knowledge Base",
+  "subtitle": "Everything you need to configure, monitor, and optimize your Intelligent Mailroom operations.",
+  "searchPlaceholder": "Search articles, guides, FAQs, or troubleshooting topics...",
+  "categories": {
+    "all": "All Topics",
+    "gettingStarted": "Getting Started",
+    "emailIngestion": "Email & Ingestion",
+    "aiClassification": "AI & Classification",
+    "maarchIntegration": "Maarch Courrier",
+    "troubleshooting": "Troubleshooting & Logs"
+  },
+  "hero": {
+    "badge": "Documentation & Support",
+    "tagline": "How can we help you today?",
+    "quickLinksTitle": "Popular searches:"
+  },
+  "guides": {
+    "title": "Interactive User Guides",
+    "subtitle": "Step-by-step documentation for key mailroom features and workflows.",
+    "items": [
+      {
+        "id": "workflow-overview",
+        "category": "gettingStarted",
+        "title": "Mailroom Pipeline Overview",
+        "description": "Understand how incoming emails are ingested, processed via OCR & AI, and dispatched into Maarch Courrier.",
+        "readTime": "4 min read",
+        "steps": [
+          "Email polling extracts unread messages & PDF attachments from your IMAP mailbox.",
+          "Tesseract OCR converts scanned document images into searchable text.",
+          "LLM/Rule classification tags the document with category, urgency, & department.",
+          "The document is pushed into Maarch Courrier via REST API with complete metadata."
+        ]
+      },
+      {
+        "id": "ai-tuning",
+        "category": "aiClassification",
+        "title": "Tuning AI & Classification Confidence",
+        "description": "Learn how to optimize classification prompts, threshold triggers, and fallback rules.",
+        "readTime": "6 min read",
+        "steps": [
+          "Navigate to AI Classification settings in the sidebar.",
+          "Set minimum confidence threshold (e.g. 75%) for auto-ingestion.",
+          "Define fallback rules for low-confidence documents requiring manual review.",
+          "Review classification logs to audit AI reasoning and category accuracy."
+        ]
+      },
+      {
+        "id": "maarch-connect",
+        "category": "maarchIntegration",
+        "title": "Maarch Courrier API Integration Guide",
+        "description": "Configure OAuth2 tokens, folder mapping, and status synchronization with Maarch Courrier.",
+        "readTime": "5 min read",
+        "steps": [
+          "Obtain API client credentials from your Maarch Courrier administrative panel.",
+          "Configure the target endpoint URL and authentication secret in Settings.",
+          "Map internal Mailroom document types to Maarch Courrier destination folders.",
+          "Test connectivity and verify initial document creation in Maarch."
+        ]
+      },
+      {
+        "id": "logs-debugging",
+        "category": "troubleshooting",
+        "title": "Diagnosing System Logs & Pipeline Errors",
+        "description": "Troubleshoot failed ingestions, IMAP connection timeouts, and OCR processing exceptions.",
+        "readTime": "3 min read",
+        "steps": [
+          "Open the Logs view to inspect real-time system events.",
+          "Filter by 'Failed' or 'Warning' event types to isolate issues.",
+          "Check raw stack traces for detailed error messages.",
+          "Export diagnostic logs as CSV for support ticket submission."
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find quick answers to common questions regarding system setup and operations.",
+    "items": [
+      {
+        "id": "faq-1",
+        "category": "emailIngestion",
+        "question": "How often does the Intelligent Mailroom poll for new emails?",
+        "answer": "By default, the automatic polling engine checks your configured IMAP inbox every 5 minutes. You can also trigger immediate polling anytime by clicking the 'Poll Now' button in the Header or Dashboard."
+      },
+      {
+        "id": "faq-2",
+        "category": "aiClassification",
+        "question": "What document formats are supported for AI & OCR extraction?",
+        "answer": "The system processes PDF, PNG, JPEG, TIFF, and DOCX attachments. Scanned image-based PDFs are automatically processed through the Tesseract OCR engine before AI classification."
+      },
+      {
+        "id": "faq-3",
+        "category": "maarchIntegration",
+        "question": "What happens if Maarch Courrier API is temporarily unreachable?",
+        "answer": "If Maarch Courrier is offline or returns an error, the document is safely queued in the local mailroom database with status 'FAILED' or 'PENDING'. Once connectivity is restored, automated retries process queued documents without data loss."
+      },
+      {
+        "id": "faq-4",
+        "category": "gettingStarted",
+        "question": "How do I switch the application language or color theme?",
+        "answer": "You can toggle between Dark and Light mode using the sun/moon icon in the top header. Language can be switched between English and French using the language dropdown selector."
+      },
+      {
+        "id": "faq-5",
+        "category": "troubleshooting",
+        "question": "Where can I view detailed error messages for a failed document?",
+        "answer": "Navigate to the Logs section or the Processed Documents detail view. Click on any failed entry to expand the full event payload and stack trace."
+      }
+    ]
+  },
+  "support": {
+    "title": "Still need help?",
+    "subtitle": "Our dedicated technical support team is here to assist you with custom integrations, bug reports, and configuration inquiries.",
+    "button": "Contact Technical Support",
+    "modalTitle": "Submit a Support Ticket",
+    "modalDescription": "Fill out the form below and an engineer will respond to your ticket within 24 hours.",
+    "form": {
+      "subject": "Subject",
+      "subjectPlaceholder": "e.g. IMAP Connection error on port 993",
+      "category": "Category",
+      "priority": "Priority Level",
+      "priorityLow": "Low - General question",
+      "priorityMedium": "Medium - Non-critical issue",
+      "priorityHigh": "High - Ingestion pipeline blocked",
+      "message": "Detailed Description",
+      "messagePlaceholder": "Describe the issue, step-by-step reproduction, or error messages...",
+      "submit": "Submit Ticket",
+      "cancel": "Cancel",
+      "submitting": "Submitting...",
+      "successTitle": "Support Ticket Submitted",
+      "successMessage": "Ticket #{{id}} created successfully. A confirmation email has been sent."
+    }
+  }
+}

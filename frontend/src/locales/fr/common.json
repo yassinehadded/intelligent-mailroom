@@ -26,7 +26,8 @@
     "documents": "Documents traités",
     "maarch": "Maarch",
     "settings": "Paramètres",
-    "logs": "Journaux"
+    "logs": "Journaux",
+    "help": "Centre d'aide"
   },
   "buttons": {
     "pollNow": "Interroger",

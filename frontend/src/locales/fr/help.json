@@ -1,0 +1,135 @@
+{
+  "title": "Centre d'aide & Base de connaissances",
+  "subtitle": "Tout ce dont vous avez besoin pour configurer, surveiller et optimiser vos opérations de courrier intelligent.",
+  "searchPlaceholder": "Rechercher des articles, guides, FAQ ou sujets de dépannage...",
+  "categories": {
+    "all": "Tous les sujets",
+    "gettingStarted": "Premiers pas",
+    "emailIngestion": "Courriel & Ingestion",
+    "aiClassification": "IA & Classification",
+    "maarchIntegration": "Maarch Courrier",
+    "troubleshooting": "Dépannage & Journaux"
+  },
+  "hero": {
+    "badge": "Documentation & Assistance",
+    "tagline": "Comment pouvons-nous vous aider aujourd'hui ?",
+    "quickLinksTitle": "Recherches populaires :"
+  },
+  "guides": {
+    "title": "Guides utilisateurs interactifs",
+    "subtitle": "Documentation étape par étape pour les fonctionnalités et flux de travail clés.",
+    "items": [
+      {
+        "id": "workflow-overview",
+        "category": "gettingStarted",
+        "title": "Présentation du flux de courrier",
+        "description": "Comprenez comment les courriels entrants sont ingérés, traités par OCR et IA, et distribués dans Maarch Courrier.",
+        "readTime": "4 min de lecture",
+        "steps": [
+          "L'interrogation automatique extrait les messages non lus et pièces jointes PDF de votre boîte IMAP.",
+          "L'OCR Tesseract transforme les images de documents numérisés en texte recherchable.",
+          "La classification IA/règles étiquette le document avec sa catégorie, son urgence et son service.",
+          "Le document est transmis à Maarch Courrier via l'API REST avec toutes ses métadonnées."
+        ]
+      },
+      {
+        "id": "ai-tuning",
+        "category": "aiClassification",
+        "title": "Optimisation de l'IA & Seuils de confiance",
+        "description": "Apprenez à optimiser les invites de classification, les seuils de déclenchement et les règles de repli.",
+        "readTime": "6 min de lecture",
+        "steps": [
+          "Accédez aux paramètres de classification IA dans la barre latérale.",
+          "Définissez le seuil de confiance minimal (ex. 75 %) pour l'ingestion automatique.",
+          "Configurez les règles de repli pour les documents à faible confiance nécessitant une révision manuelle.",
+          "Consultez les journaux de classification pour auditer le raisonnement IA et la précision."
+        ]
+      },
+      {
+        "id": "maarch-connect",
+        "category": "maarchIntegration",
+        "title": "Guide d'intégration API Maarch Courrier",
+        "description": "Configurez les jetons OAuth2, le mappage de dossiers et la synchronisation du statut avec Maarch Courrier.",
+        "readTime": "5 min de lecture",
+        "steps": [
+          "Obtenez les identifiants d'API depuis votre panneau d'administration Maarch Courrier.",
+          "Configurez l'URL d'extrémité et la clé d'authentification dans les Paramètres.",
+          "Mappez les types de documents internes vers les dossiers cibles de Maarch Courrier.",
+          "Testez la connectivité et vérifiez la création initiale de documents dans Maarch."
+        ]
+      },
+      {
+        "id": "logs-debugging",
+        "category": "troubleshooting",
+        "title": "Diagnostic des journaux et erreurs du système",
+        "description": "Dépanniez les échecs d'ingestion, les expiations de délai IMAP et les exceptions de traitement OCR.",
+        "readTime": "3 min de lecture",
+        "steps": [
+          "Ouvrez la vue Journaux pour inspecter les événements système en temps réel.",
+          "Filtrez par type d'événement 'Échec' ou 'Avertissement' pour isoler les problèmes.",
+          "Examinez les piles d'exécution brutes pour obtenir les détails des erreurs.",
+          "Exportez les journaux de diagnostic au format CSV pour soumettre un ticket d'assistance."
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Foire Aux Questions (FAQ)",
+    "subtitle": "Trouvez des réponses rapides aux questions fréquemment posées sur le système.",
+    "items": [
+      {
+        "id": "faq-1",
+        "category": "emailIngestion",
+        "question": "À quelle fréquence le Courrier Intelligent vérifie-t-il les nouveaux courriels ?",
+        "answer": "Par défaut, le moteur d'interrogation automatique vérifie votre boîte IMAP toutes les 5 minutes. Vous pouvez aussi déclencher une vérification immédiate avec le bouton 'Interroger'."
+      },
+      {
+        "id": "faq-2",
+        "category": "aiClassification",
+        "question": "Quels formats de documents sont pris en charge pour l'extraction OCR et IA ?",
+        "answer": "Le système traite les pièces jointes PDF, PNG, JPEG, TIFF et DOCX. Les PDF numérisés sont automatiquement traités par le moteur OCR Tesseract avant la classification."
+      },
+      {
+        "id": "faq-3",
+        "category": "maarchIntegration",
+        "question": "Que se passe-t-il si l'API Maarch Courrier est temporairement inaccessible ?",
+        "answer": "Si Maarch Courrier est hors ligne, le document est conservé en sécurité dans la base de données locale avec le statut 'ÉCHEC' ou 'EN ATTENTE'. Dès le rétablissement, les tentatives automatiques le traitent sans perte de données."
+      },
+      {
+        "id": "faq-4",
+        "category": "gettingStarted",
+        "question": "Comment changer la langue de l'application ou le thème de couleur ?",
+        "answer": "Vous pouvez basculer entre le mode Sombre et Clair via l'icône soleil/lune dans l'en-tête. La langue se change entre l'anglais et le français via le sélecteur de langue."
+      },
+      {
+        "id": "faq-5",
+        "category": "troubleshooting",
+        "question": "Où puis-je consulter les messages d'erreur détaillés pour un document en échec ?",
+        "answer": "Rendez-vous dans la section Journaux ou dans la vue détaillée des Documents Traités. Cliquez sur une entrée en échec pour afficher le contenu complet de l'événement."
+      }
+    ]
+  },
+  "support": {
+    "title": "Besoin d'aide supplémentaire ?",
+    "subtitle": "Notre équipe de support technique dédiée est là pour vous aider dans vos intégrations sur mesure, rapports de bugs et demandes de configuration.",
+    "button": "Contacter le support technique",
+    "modalTitle": "Soumettre un ticket d'assistance",
+    "modalDescription": "Remplissez le formulaire ci-dessous et un ingénieur répondra à votre ticket sous 24 heures.",
+    "form": {
+      "subject": "Sujet",
+      "subjectPlaceholder": "ex. Erreur de connexion IMAP sur le port 993",
+      "category": "Catégorie",
+      "priority": "Niveau de priorité",
+      "priorityLow": "Basse - Question générale",
+      "priorityMedium": "Moyenne - Problème non critique",
+      "priorityHigh": "Haute - Flux d'ingestion bloqué",
+      "message": "Description détaillée",
+      "messagePlaceholder": "Décrivez le problème, les étapes de reproduction ou les messages d'erreur...",
+      "submit": "Soumettre le ticket",
+      "cancel": "Annuler",
+      "submitting": "Soumission...",
+      "successTitle": "Ticket d'assistance soumis",
+      "successMessage": "Ticket #{{id}} créé avec succès. Un courriel de confirmation vous a été envoyé."
+    }
+  }
+}

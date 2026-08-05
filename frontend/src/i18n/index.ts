@@ -7,6 +7,7 @@ import enCommon from "@/locales/en/common.json";
 import enDashboard from "@/locales/en/dashboard.json";
 import enDocuments from "@/locales/en/documents.json";
 import enEmail from "@/locales/en/email.json";
+import enHelp from "@/locales/en/help.json";
 import enLogs from "@/locales/en/logs.json";
 import enMaarch from "@/locales/en/maarch.json";
 import enSettings from "@/locales/en/settings.json";
@@ -16,6 +17,7 @@ import frCommon from "@/locales/fr/common.json";
 import frDashboard from "@/locales/fr/dashboard.json";
 import frDocuments from "@/locales/fr/documents.json";
 import frEmail from "@/locales/fr/email.json";
+import frHelp from "@/locales/fr/help.json";
 import frLogs from "@/locales/fr/logs.json";
 import frMaarch from "@/locales/fr/maarch.json";
 import frSettings from "@/locales/fr/settings.json";
@@ -43,6 +45,7 @@ void i18n
         maarch: enMaarch,
         settings: enSettings,
         logs: enLogs,
+        help: enHelp,
       },
       fr: {
         common: frCommon,
@@ -53,12 +56,13 @@ void i18n
         maarch: frMaarch,
         settings: frSettings,
         logs: frLogs,
+        help: frHelp,
       },
     },
     fallbackLng: "en",
     supportedLngs: ["en", "fr"],
     defaultNS: "common",
-    ns: ["common", "dashboard", "email", "ai", "documents", "maarch", "settings", "logs"],
+    ns: ["common", "dashboard", "email", "ai", "documents", "maarch", "settings", "logs", "help"],
     interpolation: {
       escapeValue: false,
     },

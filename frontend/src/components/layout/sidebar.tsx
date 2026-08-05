@@ -2,6 +2,7 @@ import {
   Activity,
   Brain,
   FileStack,
+  HelpCircle,
   LayoutDashboard,
   Mail,
   Moon,
@@ -22,6 +23,7 @@ const navItems = [
   { to: "/maarch", labelKey: "nav.maarch", icon: Workflow },
   { to: "/settings", labelKey: "nav.settings", icon: Settings },
   { to: "/logs", labelKey: "nav.logs", icon: ScrollText },
+  { to: "/help", labelKey: "nav.help", icon: HelpCircle },
 ] as const;
 
 export function Sidebar() {
@@ -38,7 +40,7 @@ export function Sidebar() {
           <p className="text-xs text-muted-foreground">{t("appSubtitle")}</p>
         </div>
       </div>
-      <nav className="flex-1 space-y-1 p-4">
+      <nav className="flex-1 space-y-1 p-4 overflow-y-auto">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
@@ -48,7 +50,7 @@ export function Sidebar() {
               cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-primary/10 text-primary"
+                  ? "bg-primary/10 text-primary font-semibold"
                   : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
               )
             }
@@ -57,6 +59,24 @@ export function Sidebar() {
             {t(item.labelKey)}
           </NavLink>
         ))}
+
+        <div className="pt-4">
+          <div className="rounded-xl border border-primary/20 bg-primary/5 p-3.5 text-xs">
+            <div className="flex items-center gap-2 font-semibold text-primary">
+              <HelpCircle className="h-4 w-4" />
+              <span>{t("nav.help")}</span>
+            </div>
+            <p className="mt-1 text-muted-foreground">
+              Documentation, guides, FAQs & support.
+            </p>
+            <NavLink
+              to="/help"
+              className="mt-2.5 flex w-full items-center justify-center rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+            >
+              Open Help Center
+            </NavLink>
+          </div>
+        </div>
       </nav>
     </aside>
   );
