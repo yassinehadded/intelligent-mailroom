@@ -1,4 +1,4 @@
-#  Intelligent Mailroom
+# Intelligent Mailroom
 
 **AI-powered automated mail dispatching platform integrated with Maarch Courrier.**
 
@@ -7,22 +7,23 @@ in **Maarch Courrier (GEC)**. It polls an IMAP mailbox, extracts and classifies 
 content, and injects structured courriers into Maarch via its REST API — with an optional
 human validation step in Maarch baskets.
 
->  For deep technical details, class-by-class documentation, sequence diagrams, and
+> For deep technical details, class-by-class documentation, sequence diagrams, and
 > design decisions, see **[ARCHITECTURE.md](./ARCHITECTURE.md)**.
 
 ---
 
-##  Features
+## Features
 
 - **Email Listener** — Polls an IMAP mailbox for unread messages, parses MIME bodies
   and attachments.
 - **OCR & Text Extraction** — Extracts text from PDFs (`pypdf`) and optionally from
   images (Tesseract), with graceful fallback to the email body.
 - **AI Classification** — Routes each message to the correct destination entity,
-  document type, and subject. Ships with a **rule-based classifier** (default) and an
-  optional **OpenAI** classifier.
+  document type, and subject. Ships with an **enhanced multilingual rule engine**
+  (French, English, Arabic) and a **hybrid classifier** that combines the rule engine
+  with a local **Qwen 2.5 7B** model (via Ollama) and a decision layer.
 - **Automatic Routing** — Maps inbound mail to Maarch entities and document types
-  (e.g. invoice → FIN, HR → DRH, legal → PJU).
+  (e.g. invoice -> FIN, HR -> DRH, legal -> PJU).
 - **Maarch Integration** — Fully external service; creates **resources** (courriers),
   uploads attachments, resolves contacts, and manages reference data over the public
   Maarch REST API.
@@ -30,7 +31,7 @@ human validation step in Maarch baskets.
   `Message-ID`, powering the dashboard and document history.
 - **Operations UI** — A React SPA to monitor health, trigger mailbox polls, review
   audit events, explore Maarch metadata, and test the AI classifier.
-- **Internationalization** — English and French UI.
+- **Internationalization** — English, French, and Arabic (RTL) UI.
 
 ---
 
@@ -90,17 +91,17 @@ calls Maarch's documented REST endpoints.
 
 ## Tech Stack
 
-| Layer                    | Technology                                                       |
-| ------------------------ | ---------------------------------------------------------------- |
-| **API**                  | FastAPI, Uvicorn, Starlette                                      |
-| **Config**               | Pydantic Settings, `.env`                                        |
-| **HTTP client (Maarch)** | `requests` + session, Basic Auth, retries                        |
-| **Email**                | stdlib `imaplib`, `email`                                        |
-| **OCR / PDF**            | `pypdf`; optional `pytesseract` + Pillow                         |
-| **AI (optional)**        | OpenAI-compatible Chat Completions API                           |
-| **Persistence (audit)**  | SQLite via stdlib                                                |
-| **Frontend**             | React 19, Vite, TypeScript, Tailwind v4, TanStack Query, i18next |
-| **Containers**           | Docker Compose (api, worker, frontend)                           |
+| Layer                    | Technology                                                                                                                    |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| **API**                  | FastAPI, Uvicorn, Starlette                                                                                                   |
+| **Config**               | Pydantic Settings, `.env`                                                                                                     |
+| **HTTP client (Maarch)** | `requests` + session, Basic Auth, retries                                                                                     |
+| **Email**                | stdlib `imaplib`, `email`                                                                                                     |
+| **OCR / PDF**            | `pypdf`; optional `pytesseract` + Pillow                                                                                      |
+| **AI (hybrid)**          | Enhanced multilingual rule engine (FR/EN/AR) + local Qwen 2.5 7B via Ollama + decision engine; optional OpenAI-compatible API |
+| **Persistence (audit)**  | SQLite via stdlib                                                                                                             |
+| **Frontend**             | React 19, Vite, TypeScript, Tailwind v4, TanStack Query, i18next (EN/FR/AR, RTL)                                              |
+| **Containers**           | Docker Compose (api, worker, frontend)                                                                                        |
 
 ---
 
@@ -115,7 +116,7 @@ intelligent-mailroom/
 ├── ARCHITECTURE.md         # Deep technical handbook
 ├── src/
 │   ├── api/                # HTTP layer (routes, dependencies, app factory)
-│   ├── ai/                 # Classification pipeline (rules + OpenAI)
+│   ├── ai/                 # Hybrid classification pipeline (multilingual rules + Ollama + decision engine)
 │   ├── config/             # Settings singleton (.env)
 │   ├── database/           # Audit repository (SQLite)
 │   ├── email/              # IMAP client + ingestion orchestrator
@@ -131,17 +132,17 @@ intelligent-mailroom/
 
 ### Backend modules
 
-| Module          | Responsibility                                           |
-| --------------- | -------------------------------------------------------- |
-| `src/api/`      | HTTP layer — routes, CORS, dependency wiring             |
-| `src/ai/`       | Routing rules, classifiers, analysis pipeline            |
-| `src/config/`   | `Settings` from environment (Pydantic)                   |
-| `src/database/` | SQLite audit schema and queries                          |
-| `src/email/`    | IMAP client, MIME parsing, ingestion service             |
-| `src/maarch/`   | HTTP client, resources, attachments, reference, contacts |
-| `src/ocr/`      | PDF / text / image extraction → `OcrResult`              |
-| `src/workers/`  | Infinite poll loop with sleep                            |
-| `src/utils/`    | Logging helpers                                          |
+| Module          | Responsibility                                                              |
+| --------------- | --------------------------------------------------------------------------- |
+| `src/api/`      | HTTP layer — routes, CORS, dependency wiring                                |
+| `src/ai/`       | Routing rules, multilingual classifiers, analysis pipeline, decision engine |
+| `src/config/`   | `Settings` from environment (Pydantic)                                      |
+| `src/database/` | SQLite audit schema and queries                                             |
+| `src/email/`    | IMAP client, MIME parsing, ingestion service                                |
+| `src/maarch/`   | HTTP client, resources, attachments, reference, contacts                    |
+| `src/ocr/`      | PDF / text / image extraction → `OcrResult`                                 |
+| `src/workers/`  | Infinite poll loop with sleep                                               |
+| `src/utils/`    | Logging helpers                                                             |
 
 ---
 
@@ -151,7 +152,9 @@ intelligent-mailroom/
 - **Node.js 20+** (for the frontend)
 - A reachable **Maarch Courrier** instance with REST API access
 - An **IMAP** mailbox (for email ingestion)
-- _(Optional)_ An **OpenAI-compatible** API key for the LLM classifier
+- _(Optional)_ **Ollama** running the **Qwen 2.5 7B** model locally for the hybrid
+  classifier (falls back to the rule engine if unavailable)
+- _(Optional)_ An **OpenAI-compatible** API key as an alternative LLM classifier
 
 ---
 
@@ -215,39 +218,43 @@ docker compose up --build
 All settings are loaded from environment variables via a `.env` file (see
 [`src/config/settings.py`](./src/config/settings.py)).
 
-| Variable                              | Default                            | Purpose                       |
-| ------------------------------------- | ---------------------------------- | ----------------------------- |
-| `APP_NAME`                            | `Intelligent Mailroom`             | API title                     |
-| `APP_ENV`                             | `development`                      | Environment label             |
-| `LOG_LEVEL`                           | `INFO`                             | Logging level                 |
-| `MAARCH_URL`                          | _(required)_                       | Maarch base URL               |
-| `MAARCH_USERNAME` / `MAARCH_PASSWORD` | —                                  | Maarch Basic Auth credentials |
-| `MAARCH_TIMEOUT`                      | `30`                               | HTTP timeout (seconds)        |
-| `MAARCH_DEFAULT_MODEL_ID`             | `8`                                | Default indexing model        |
-| `MAARCH_DEFAULT_STATUS`               | `INIT`                             | Initial workflow status       |
-| `MAARCH_DEFAULT_ATTACHMENT_TYPE`      | `incoming_mail_attachment`         | Attachment type key           |
-| `MAARCH_RETRY_COUNT`                  | `3`                                | Client retry count            |
-| `MAARCH_RETRY_BACKOFF_SECONDS`        | `1.0`                              | Exponential backoff base      |
-| `MAARCH_AUTO_CREATE_CONTACTS`         | `true`                             | POST contacts for senders     |
-| `EMAIL_HOST` / `EMAIL_PORT`           | — / `993`                          | IMAP connection               |
-| `EMAIL_USERNAME` / `EMAIL_PASSWORD`   | —                                  | IMAP credentials              |
-| `EMAIL_USE_SSL`                       | `true`                             | Use SSL for IMAP              |
-| `EMAIL_MAILBOX`                       | `INBOX`                            | Mailbox to poll               |
-| `EMAIL_FETCH_LIMIT`                   | `20`                               | Max messages per poll         |
-| `EMAIL_MARK_AS_READ`                  | `true`                             | Mark `\Seen` after ingestion  |
-| `EMAIL_DEFAULT_DESTINATION`           | `13`                               | Fallback entity serialId      |
-| `EMAIL_POLL_INTERVAL_SECONDS`         | `60`                               | Worker sleep interval         |
-| `OCR_ENABLED`                         | `true`                             | Master OCR switch             |
-| `OCR_TESSERACT_ENABLED`               | `false`                            | Image OCR (Tesseract)         |
-| `OCR_TESSERACT_LANG`                  | `fra+eng`                          | Tesseract languages           |
-| `AI_ENABLED`                          | `true`                             | Skip analysis when `false`    |
-| `AI_PROVIDER`                         | `rules`                            | `rules` or `openai`           |
-| `OPENAI_API_KEY` / `OPENAI_MODEL`     | — / `gpt-4o-mini`                  | Optional LLM                  |
-| `OPENAI_BASE_URL` / `OPENAI_TIMEOUT`  | — / `60`                           | LLM endpoint / timeout        |
-| `CLASSIFICATION_MIN_CONFIDENCE`       | `0.5`                              | Pipeline confidence floor     |
-| `AUDIT_ENABLED`                       | `true`                             | SQLite logging                |
-| `AUDIT_DB_PATH`                       | `data/audit.db`                    | DB file path                  |
-| `MAARCH_DOCKER_URL`                   | `http://host.docker.internal:8081` | Compose override              |
+| Variable                              | Default                            | Purpose                        |
+| ------------------------------------- | ---------------------------------- | ------------------------------ |
+| `APP_NAME`                            | `Intelligent Mailroom`             | API title                      |
+| `APP_ENV`                             | `development`                      | Environment label              |
+| `LOG_LEVEL`                           | `INFO`                             | Logging level                  |
+| `MAARCH_URL`                          | _(required)_                       | Maarch base URL                |
+| `MAARCH_USERNAME` / `MAARCH_PASSWORD` | —                                  | Maarch Basic Auth credentials  |
+| `MAARCH_TIMEOUT`                      | `30`                               | HTTP timeout (seconds)         |
+| `MAARCH_DEFAULT_MODEL_ID`             | `8`                                | Default indexing model         |
+| `MAARCH_DEFAULT_STATUS`               | `INIT`                             | Initial workflow status        |
+| `MAARCH_DEFAULT_ATTACHMENT_TYPE`      | `incoming_mail_attachment`         | Attachment type key            |
+| `MAARCH_RETRY_COUNT`                  | `3`                                | Client retry count             |
+| `MAARCH_RETRY_BACKOFF_SECONDS`        | `1.0`                              | Exponential backoff base       |
+| `MAARCH_AUTO_CREATE_CONTACTS`         | `true`                             | POST contacts for senders      |
+| `EMAIL_HOST` / `EMAIL_PORT`           | — / `993`                          | IMAP connection                |
+| `EMAIL_USERNAME` / `EMAIL_PASSWORD`   | —                                  | IMAP credentials               |
+| `EMAIL_USE_SSL`                       | `true`                             | Use SSL for IMAP               |
+| `EMAIL_MAILBOX`                       | `INBOX`                            | Mailbox to poll                |
+| `EMAIL_FETCH_LIMIT`                   | `20`                               | Max messages per poll          |
+| `EMAIL_MARK_AS_READ`                  | `true`                             | Mark `\Seen` after ingestion   |
+| `EMAIL_DEFAULT_DESTINATION`           | `13`                               | Fallback entity serialId       |
+| `EMAIL_POLL_INTERVAL_SECONDS`         | `60`                               | Worker sleep interval          |
+| `OCR_ENABLED`                         | `true`                             | Master OCR switch              |
+| `OCR_TESSERACT_ENABLED`               | `false`                            | Image OCR (Tesseract)          |
+| `OCR_TESSERACT_LANG`                  | `fra+eng`                          | Tesseract languages            |
+| `AI_ENABLED`                          | `true`                             | Skip analysis when `false`     |
+| `AI_PROVIDER`                         | `hybrid`                           | `hybrid`, `rules`, or `openai` |
+| `OLLAMA_BASE_URL`                     | `http://localhost:11434`           | Local Ollama endpoint          |
+| `OLLAMA_MODEL`                        | `qwen2.5:7b`                       | Local LLM model                |
+| `OLLAMA_TIMEOUT`                      | `60`                               | Ollama request timeout (s)     |
+| `OLLAMA_DOCKER_URL`                   | _(optional)_                       | Ollama URL override in Docker  |
+| `OPENAI_API_KEY` / `OPENAI_MODEL`     | — / `gpt-4o-mini`                  | Optional LLM                   |
+| `OPENAI_BASE_URL` / `OPENAI_TIMEOUT`  | — / `60`                           | LLM endpoint / timeout         |
+| `CLASSIFICATION_MIN_CONFIDENCE`       | `0.5`                              | Pipeline confidence floor      |
+| `AUDIT_ENABLED`                       | `true`                             | SQLite logging                 |
+| `AUDIT_DB_PATH`                       | `data/audit.db`                    | DB file path                   |
+| `MAARCH_DOCKER_URL`                   | `http://host.docker.internal:8081` | Compose override               |
 
 **Note:** A missing `MAARCH_URL` fails settings load; missing Maarch credentials raise a
 `MaarchConfigurationError` when the client is constructed. Use TLS in production.
@@ -291,6 +298,7 @@ Everything is mounted under the `/api/v1` prefix.
 | `/maarch`     | maarch connection / health / entities / reference |
 | `/settings`   | read-only status endpoints                        |
 | `/logs`       | audit events                                      |
+| `/help`       | guides, FAQ, and support contact                  |
 
 The frontend is a **thin client** — it reflects backend state and triggers existing
 endpoints, without duplicating ingestion logic.
@@ -305,10 +313,22 @@ endpoints, without duplicating ingestion logic.
 flowchart LR
   P[Document Analysis Pipeline] --> E[Document Text Extractor]
   P --> F[build_classifier]
-  F -->|AI_PROVIDER=rules| R[Rule Based Classifier]
-  F -->|AI_PROVIDER=openai| O[OpenAI Classifier]
-  O -->|on error| R
+  F -->|AI_PROVIDER=hybrid| H[Hybrid Classifier]
+  H --> r[Enhanced Rule Engine]
+  H --> O[Qwen 2.5 7B via Ollama]
+  r --> D[Decision Engine]
+  O --> D
+  F -->|AI_PROVIDER=openai| A[OpenAI Classifier]
+  A -->|on error| r
+  D -->|Action| Out[Routing Decision]
 ```
+
+The **enhanced rule engine** supports **French, English, and Arabic** (including
+diacritics removal and deterministic regex evidence). When `AI_PROVIDER=hybrid`
+(the default), the rule engine and the local **Qwen 2.5 7B** model run in parallel
+and a **decision engine** reconciles their outputs using five configurable cases
+(agreement, department mismatch, high LLM confidence, deterministic rule override,
+and low confidence).
 
 ### Default routing rules
 
@@ -326,10 +346,11 @@ flowchart LR
 
 | Condition            | Fallback                            |
 | -------------------- | ----------------------------------- |
-| No OpenAI key        | Rule-based classifier               |
+| No Ollama / LLM      | Rule-based classifier               |
 | LLM error            | Rule-based classifier               |
 | Low confidence       | Safe destination / doctype defaults |
 | No reference service | Statically defined doctype IDs      |
+| No OpenAI key        | Rule-based classifier               |
 
 ---
 
@@ -340,15 +361,18 @@ flowchart LR
 pytest
 ```
 
-| Test file                            | Focus                                       |
-| ------------------------------------ | ------------------------------------------- |
-| `tests/test_maarch.py`               | Client errors, serialization, health routes |
-| `tests/test_email.py`                | IMAP / processor mocks                      |
-| `tests/test_ai.py`                   | Rule classifier routing                     |
-| `tests/test_email_classification.py` | Ingestion + classification integration      |
-| `tests/test_phase5.py`               | Audit, retries, contacts                    |
-| `tests/test_health.py`               | Readiness probes                            |
-| `tests/test_config.py`               | Settings                                    |
+| Test file                            | Focus                                                         |
+| ------------------------------------ | ------------------------------------------------------------- |
+| `tests/test_maarch.py`               | Client errors, serialization, health routes                   |
+| `tests/test_email.py`                | IMAP / processor mocks                                        |
+| `tests/test_ai.py`                   | Rule classifier routing                                       |
+| `tests/test_email_classification.py` | Ingestion + classification integration                        |
+| `tests/test_phase5.py`               | Audit, retries, contacts                                      |
+| `tests/test_health.py`               | Readiness probes                                              |
+| `tests/test_config.py`               | Settings                                                      |
+| `tests/test_hybrid_pipeline.py`      | Text normalizer, enhanced rule engine, hybrid decision engine |
+| `test_settings.py`                   | Settings validation                                           |
+| `test_logger.py`                     | Logger smoke test                                             |
 
 ---
 
