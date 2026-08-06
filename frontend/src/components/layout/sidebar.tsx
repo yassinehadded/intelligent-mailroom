@@ -30,7 +30,7 @@ export function Sidebar() {
   const { t } = useTranslation("common");
 
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-border bg-card/50 lg:flex lg:flex-col">
+    <aside className="hidden w-64 shrink-0 border-r border-border rtl:border-r-0 rtl:border-l bg-card/50 lg:flex lg:flex-col">
       <div className="flex h-16 items-center gap-3 border-b border-border px-6">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
           <Activity className="h-5 w-5" />

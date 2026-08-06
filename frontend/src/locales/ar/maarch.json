@@ -1,0 +1,23 @@
+{
+  "title": "التكامل مع نظام مارس (Maarch)",
+  "description": "حالة الاتصال، الهياكل الإدارية، والبيانات المرجعية من عميل نظام مارس.",
+  "connection": "اتصال النظام",
+  "connectionSource": "GET /api/v1/maarch/connection",
+  "authentication": "المصادقة والاعتماد",
+  "authenticationSource": "GET /api/v1/maarch/health",
+  "entities": "الهياكل والإدارات",
+  "entitiesCount": "{{count}} هيكل إداري متاح للتوجيه",
+  "referenceMetadata": "البيانات المرجعية للتصنيف",
+  "referenceDescription": "نماذج الفهرسة، الحالات، الأولويات، والإعدادات الافتراضية",
+  "fields": {
+    "connected": "متصل",
+    "webserviceReady": "خدمة الويب جاهزة",
+    "currentUser": "المستخدم الحالي",
+    "application": "التطبيق",
+    "authMode": "نمط المصادقة",
+    "maarchUrl": "رابط نظام مارس",
+    "defaults": "الإعدادات الافتراضية",
+    "indexingModels": "نماذج الفهرسة"
+  },
+  "defaultsSummary": "النموذج {{modelId}} · الحالة {{status}} · نوع المرفق {{attachmentType}}"
+}

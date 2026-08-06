@@ -10,6 +10,7 @@ services:
     environment:
       APP_ENV: production
       MAARCH_URL: ${MAARCH_DOCKER_URL:-http://host.docker.internal:8081}
+      OLLAMA_BASE_URL: ${OLLAMA_DOCKER_URL:-http://host.docker.internal:11434}
       AUDIT_DB_PATH: /app/data/audit.db
     volumes:
       - mailroom-data:/app/data
@@ -39,6 +40,7 @@ services:
     environment:
       APP_ENV: production
       MAARCH_URL: ${MAARCH_DOCKER_URL:-http://host.docker.internal:8081}
+      OLLAMA_BASE_URL: ${OLLAMA_DOCKER_URL:-http://host.docker.internal:11434}
       AUDIT_DB_PATH: /app/data/audit.db
     volumes:
       - mailroom-data:/app/data

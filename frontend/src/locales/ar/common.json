@@ -1,0 +1,104 @@
+{
+  "appName": "البريد الذكي",
+  "appSubtitle": "لوحة عمليات إدارة البريد",
+  "appTagline": "منظومة أتمتة البريد الإداري والمستندات لنظام مارس (Maarch Courrier)",
+  "yes": "نعم",
+  "no": "لا",
+  "enabled": "مفعل",
+  "disabled": "معطل",
+  "notConfigured": "غير متهيأ",
+  "checking": "جاري التحقق...",
+  "configured": "متهيأ",
+  "unavailable": "غير متاح",
+  "systemLabel": "النظام",
+  "emptyValue": "—",
+  "language": {
+    "label": "اللغة",
+    "current": "اللغة الحالية: {{language}}"
+  },
+  "theme": {
+    "toggle": "تبديل المظهر"
+  },
+  "nav": {
+    "dashboard": "لوحة القيادة",
+    "email": "البريد الإلكتروني",
+    "ai": "التصنيف والذكاء الاصطناعي",
+    "documents": "المستندات المعالجة",
+    "maarch": "نظام مارس",
+    "settings": "الإعدادات",
+    "logs": "سجلات التدقيق",
+    "help": "مركز المساعدة"
+  },
+  "buttons": {
+    "pollNow": "فحص البريد الآن",
+    "refresh": "تحديث",
+    "openMaarch": "فتح نظام مارس",
+    "viewAll": "عرض الكل",
+    "selectAll": "تحديد الكل",
+    "process": "معالجة",
+    "exportCsv": "تصدير CSV",
+    "downloadLogs": "تحميل السجلات",
+    "reloadMetadata": "إعادة تحميل البيانات المرجعية",
+    "runClassification": "تشغيل التصنيف"
+  },
+  "maarchStatus": {
+    "INIT": "قيد الإنشاء",
+    "NEW": "جديد",
+    "COU": "مراسلة بريدية",
+    "VAL": "قيد المصادقة",
+    "END": "مغلق / منتهي",
+    "RET": "معاد"
+  },
+  "category": {
+    "invoice": "فاتورة / محاسبة",
+    "hr": "الموارد البشرية",
+    "legal": "الشؤون القانونية",
+    "it": "تكنولوجيا المعلومات",
+    "technical": "الخدمات التقنية والأشغال",
+    "social": "الشؤون الاجتماعية",
+    "general": "مراسلة عامة",
+    "contract": "عقد / اتفاقية",
+    "complaint": "شكوى / طعن",
+    "request": "طلب إداري",
+    "finance": "المالية"
+  },
+  "system": {
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "running": "قيد التشغيل",
+    "stopped": "متوقف",
+    "ready": "جاهز",
+    "degraded": "مستقر جزئياً",
+    "processing": "جاري المعالجة",
+    "completed": "مكتمل",
+    "failed": "فشل",
+    "pending": "معلق",
+    "healthy": "سليم",
+    "alive": "نشط",
+    "configured": "متهيأ",
+    "not_configured": "غير متهيأ",
+    "skipped": "تم يتجاوزه",
+    "ingested": "تمت معالجته"
+  },
+  "eventType": {
+    "ingested": "معالج",
+    "failed": "فاشل",
+    "skipped": "متجاوز",
+    "all": "الكل"
+  },
+  "poll": {
+    "steps": {
+      "connecting": "جاري الاتصال بصندوق البريد...",
+      "downloading": "جاري تحميل الرسائل...",
+      "extracting": "جاري استخراج المرفقات...",
+      "ocr": "جاري تشغيل التعرف الضوئي (OCR)...",
+      "classifying": "جاري تصنيف المستندات بالذكاء الاصطناعي...",
+      "routing": "جاري تحديد وجهة التوجيه...",
+      "uploading": "جاري الرفع إلى نظام مارس...",
+      "completed": "اكتملت العملية بنجاح."
+    },
+    "success": "اكتمل الفحص: تم استيراد {{ingested}}، وتم تجاوز {{skipped}}",
+    "failed": "فشلت عملية فحص البريد"
+  },
+  "engine": "محرك {{provider}}"
+}

@@ -10,7 +10,6 @@ from typing import Any, Iterator
 from src.config import Settings, get_settings
 from src.utils import get_logger
 
-
 logger = get_logger(__name__)
 
 SCHEMA = """
@@ -28,7 +27,13 @@ CREATE TABLE IF NOT EXISTS ingestion_events (
     category TEXT,
     confidence REAL,
     error_message TEXT,
-    details_json TEXT
+    details_json TEXT,
+    ocr_text TEXT,
+    rule_result_json TEXT,
+    llm_result_json TEXT,
+    final_decision TEXT,
+    decision_reason TEXT,
+    processing_time_ms REAL
 );
 
 CREATE UNIQUE INDEX IF NOT EXISTS idx_ingestion_events_message_id_ingested
@@ -38,7 +43,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_ingestion_events_message_id_ingested
 
 
 class AuditRepository:
-    """SQLite audit trail for ingestion events."""
+    """SQLite audit trail for ingestion events and classification decision logs."""
 
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or get_settings()
@@ -50,7 +55,29 @@ class AuditRepository:
         with self._connect() as connection:
             connection.executescript(SCHEMA)
             connection.execute("DROP INDEX IF EXISTS idx_ingestion_events_message_id")
+            self._ensure_columns(connection)
             connection.commit()
+
+    def _ensure_columns(self, connection: sqlite3.Connection) -> None:
+        """Add missing columns to table if it existed before migrations."""
+        cursor = connection.execute("PRAGMA table_info(ingestion_events)")
+        existing_cols = {row["name"] for row in cursor.fetchall()}
+
+        new_cols = {
+            "ocr_text": "TEXT",
+            "rule_result_json": "TEXT",
+            "llm_result_json": "TEXT",
+            "final_decision": "TEXT",
+            "decision_reason": "TEXT",
+            "processing_time_ms": "REAL",
+        }
+
+        for col_name, col_type in new_cols.items():
+            if col_name not in existing_cols:
+                try:
+                    connection.execute(f"ALTER TABLE ingestion_events ADD COLUMN {col_name} {col_type}")
+                except sqlite3.OperationalError:
+                    pass
 
     @contextmanager
     def _connect(self) -> Iterator[sqlite3.Connection]:
@@ -87,9 +114,26 @@ class AuditRepository:
         confidence: float | None = None,
         error_message: str | None = None,
         details: dict[str, Any] | None = None,
+        ocr_text: str | None = None,
+        rule_result: dict[str, Any] | Any | None = None,
+        llm_result: dict[str, Any] | Any | None = None,
+        final_decision: str | None = None,
+        decision_reason: str | None = None,
+        processing_time_ms: float | None = None,
     ) -> int:
         created_at = datetime.now(timezone.utc).isoformat()
-        details_json = json.dumps(details or {}, ensure_ascii=False)
+        details_map = dict(details or {})
+
+        rule_json = json.dumps(
+            rule_result.model_dump() if hasattr(rule_result, "model_dump") else (rule_result or {}),
+            ensure_ascii=False,
+        )
+        llm_json = json.dumps(
+            llm_result.model_dump() if hasattr(llm_result, "model_dump") else (llm_result or {}),
+            ensure_ascii=False,
+        )
+
+        details_json = json.dumps(details_map, ensure_ascii=False)
 
         with self._connect() as connection:
             cursor = connection.execute(
@@ -97,8 +141,9 @@ class AuditRepository:
                 INSERT INTO ingestion_events (
                     created_at, event_type, email_uid, message_id, subject, sender_email,
                     res_id, destination_serial_id, doctype_id, category, confidence,
-                    error_message, details_json
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    error_message, details_json, ocr_text, rule_result_json, llm_result_json,
+                    final_decision, decision_reason, processing_time_ms
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     created_at,
@@ -114,6 +159,12 @@ class AuditRepository:
                     confidence,
                     error_message,
                     details_json,
+                    ocr_text,
+                    rule_json,
+                    llm_json,
+                    final_decision,
+                    decision_reason,
+                    processing_time_ms,
                 ),
             )
             connection.commit()
@@ -146,6 +197,14 @@ class AuditRepository:
                 data["details"] = {}
         else:
             data["details"] = {}
+
+        for json_col in ("rule_result_json", "llm_result_json"):
+            val = data.get(json_col)
+            if val:
+                try:
+                    data[json_col.replace("_json", "")] = json.loads(val)
+                except json.JSONDecodeError:
+                    pass
         return data
 
 

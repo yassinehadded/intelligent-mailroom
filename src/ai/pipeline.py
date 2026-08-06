@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from src.ai.classifier import DocumentClassifier, build_classifier
 from src.ai.models import ClassificationResult, DocumentAnalysisResult
 from src.config import Settings, get_settings
@@ -8,7 +10,7 @@ from src.ocr import DocumentTextExtractor, OcrResult
 
 
 class DocumentAnalysisPipeline:
-    """Runs OCR then classification to produce Maarch routing metadata."""
+    """Runs OCR then hybrid classification (Rules + Qwen 2.5 7B + Decision Layer) to produce routing metadata."""
 
     PREVIEW_LENGTH = 500
 
@@ -33,6 +35,8 @@ class DocumentAnalysisPipeline:
         file_content: bytes | None = None,
         file_extension: str | None = None,
     ) -> DocumentAnalysisResult:
+        start_time = time.perf_counter()
+
         ocr_result = self.text_extractor.extract(
             content=file_content,
             extension=file_extension,
@@ -48,10 +52,17 @@ class DocumentAnalysisPipeline:
         if classification.confidence < self.settings.classification_min_confidence:
             classification = self._apply_safe_defaults(classification, subject)
 
+        elapsed_ms = (time.perf_counter() - start_time) * 1000.0
+
         return DocumentAnalysisResult(
             ocr_source=ocr_result.source,
             extracted_text_preview=ocr_result.text[: self.PREVIEW_LENGTH],
+            ocr_text=ocr_result.text,
             classification=classification,
+            rule_result=classification.rule_result,
+            llm_result=classification.llm_result,
+            decision_result=classification.decision,
+            processing_time_ms=round(elapsed_ms, 2),
         )
 
     def _compose_fallback_text(

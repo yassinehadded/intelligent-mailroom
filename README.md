@@ -1,4 +1,4 @@
-# Intelligent Mailroom
+# 🤖 Intelligent Mailroom
 
 **AI-powered automated mail dispatching platform integrated with Maarch Courrier.**
 
@@ -7,34 +7,34 @@ in **Maarch Courrier (GEC)**. It polls an IMAP mailbox, extracts and classifies 
 content, and injects structured courriers into Maarch via its REST API — with an optional
 human validation step in Maarch baskets.
 
-> For deep technical details, class-by-class documentation, sequence diagrams, and
+> 📚 For deep technical details, class-by-class documentation, sequence diagrams, and
 > design decisions, see **[ARCHITECTURE.md](./ARCHITECTURE.md)**.
 
 ---
 
-## Features
+## ✨ Features
 
-- **Email Listener** — Polls an IMAP mailbox for unread messages, parses MIME bodies
+- **📬 Email Listener** — Polls an IMAP mailbox for unread messages, parses MIME bodies
   and attachments.
-- **OCR & Text Extraction** — Extracts text from PDFs (`pypdf`) and optionally from
+- **🔎 OCR & Text Extraction** — Extracts text from PDFs (`pypdf`) and optionally from
   images (Tesseract), with graceful fallback to the email body.
-- **AI Classification** — Routes each message to the correct destination entity,
+- **🧠 AI Classification** — Routes each message to the correct destination entity,
   document type, and subject. Ships with a **rule-based classifier** (default) and an
   optional **OpenAI** classifier.
-- **Automatic Routing** — Maps inbound mail to Maarch entities and document types
+- **🛤️ Automatic Routing** — Maps inbound mail to Maarch entities and document types
   (e.g. invoice → FIN, HR → DRH, legal → PJU).
-- **Maarch Integration** — Fully external service; creates **resources** (courriers),
+- **🏛️ Maarch Integration** — Fully external service; creates **resources** (courriers),
   uploads attachments, resolves contacts, and manages reference data over the public
   Maarch REST API.
-- **Audit Logs** — Append-only SQLite audit trail with **idempotency** via
+- **🗂️ Audit Logs** — Append-only SQLite audit trail with **idempotency** via
   `Message-ID`, powering the dashboard and document history.
-- **Operations UI** — A React SPA to monitor health, trigger mailbox polls, review
+- **🖥️ Operations UI** — A React SPA to monitor health, trigger mailbox polls, review
   audit events, explore Maarch metadata, and test the AI classifier.
-- **Internationalization** — English and French UI.
+- **🌐 Internationalization** — English and French UI.
 
 ---
 
-## High-Level Architecture
+## 🏗️ High-Level Architecture
 
 ```
 ┌──────────────┐        ┌─────────────────┐        ┌─────────────────────┐
@@ -88,7 +88,7 @@ calls Maarch's documented REST endpoints.
 
 ---
 
-## Tech Stack
+## 🧰 Tech Stack
 
 | Layer                    | Technology                                                       |
 | ------------------------ | ---------------------------------------------------------------- |
@@ -104,7 +104,7 @@ calls Maarch's documented REST endpoints.
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```
 intelligent-mailroom/
@@ -145,7 +145,7 @@ intelligent-mailroom/
 
 ---
 
-## Prerequisites
+## ✅ Prerequisites
 
 - **Python 3.10+**
 - **Node.js 20+** (for the frontend)
@@ -155,7 +155,7 @@ intelligent-mailroom/
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Option A — Local development (backend)
 
@@ -210,7 +210,7 @@ docker compose up --build
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 All settings are loaded from environment variables via a `.env` file (see
 [`src/config/settings.py`](./src/config/settings.py)).
@@ -254,7 +254,7 @@ All settings are loaded from environment variables via a `.env` file (see
 
 ---
 
-## API Reference
+## 🔌 API Reference
 
 Everything is mounted under the `/api/v1` prefix.
 
@@ -280,7 +280,7 @@ Everything is mounted under the `/api/v1` prefix.
 
 ---
 
-## Frontend Pages
+## 🖥️ Frontend Pages
 
 | Route         | Backend APIs used                                 |
 | ------------- | ------------------------------------------------- |
@@ -297,7 +297,7 @@ endpoints, without duplicating ingestion logic.
 
 ---
 
-## AI & Routing
+## 🧠 AI & Routing
 
 ### Classification pipeline
 
@@ -333,7 +333,7 @@ flowchart LR
 
 ---
 
-## Testing
+## 🧪 Testing
 
 ```powershell
 # Run the full test suite
@@ -352,7 +352,7 @@ pytest
 
 ---
 
-## Documentation
+## 📖 Documentation
 
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** — the full technical handbook covering
   class-by-class documentation, execution flows, sequence diagrams, design patterns,
@@ -361,14 +361,14 @@ pytest
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository and create a feature branch.
 2. Run the existing test suite to ensure a clean baseline.
 3. Add tests for any new behavior.
 4. Submit a pull request describing the change.
 
-## License
+## 📄 License
 
 See the project's license files (e.g. `MaarchSource/LICENSE.txt` for the bundled
 Maarch Courrier source) for applicable licensing terms.

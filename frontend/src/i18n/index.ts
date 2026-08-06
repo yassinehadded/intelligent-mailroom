@@ -2,6 +2,16 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
+import arAi from "@/locales/ar/ai.json";
+import arCommon from "@/locales/ar/common.json";
+import arDashboard from "@/locales/ar/dashboard.json";
+import arDocuments from "@/locales/ar/documents.json";
+import arEmail from "@/locales/ar/email.json";
+import arHelp from "@/locales/ar/help.json";
+import arLogs from "@/locales/ar/logs.json";
+import arMaarch from "@/locales/ar/maarch.json";
+import arSettings from "@/locales/ar/settings.json";
+
 import enAi from "@/locales/en/ai.json";
 import enCommon from "@/locales/en/common.json";
 import enDashboard from "@/locales/en/dashboard.json";
@@ -27,6 +37,7 @@ export const LANGUAGE_STORAGE_KEY = "mailroom-language";
 export const supportedLanguages = [
   { code: "en", label: "English" },
   { code: "fr", label: "Français" },
+  { code: "ar", label: "العربية 🇹🇳" },
 ] as const;
 
 export type SupportedLanguage = (typeof supportedLanguages)[number]["code"];
@@ -58,9 +69,20 @@ void i18n
         logs: frLogs,
         help: frHelp,
       },
+      ar: {
+        common: arCommon,
+        dashboard: arDashboard,
+        email: arEmail,
+        ai: arAi,
+        documents: arDocuments,
+        maarch: arMaarch,
+        settings: arSettings,
+        logs: arLogs,
+        help: arHelp,
+      },
     },
     fallbackLng: "en",
-    supportedLngs: ["en", "fr"],
+    supportedLngs: ["en", "fr", "ar"],
     defaultNS: "common",
     ns: ["common", "dashboard", "email", "ai", "documents", "maarch", "settings", "logs", "help"],
     interpolation: {
@@ -73,10 +95,16 @@ void i18n
     },
   });
 
+const applyLanguageAttributes = (language: string) => {
+  const isAr = language ? language.startsWith("ar") : false;
+  document.documentElement.lang = isAr ? "ar" : language || "en";
+  document.documentElement.dir = isAr ? "rtl" : "ltr";
+};
+
 i18n.on("languageChanged", (language) => {
-  document.documentElement.lang = language;
+  applyLanguageAttributes(language);
 });
 
-document.documentElement.lang = i18n.language;
+applyLanguageAttributes(i18n.language);
 
 export default i18n;

@@ -160,6 +160,7 @@ class EmailIngestionService:
             message=message,
             res_id=created.res_id,
             classification=classification_summary,
+            analysis=analysis,
             details={
                 "attachments_uploaded": len(uploaded_attachments),
                 "contact_id": contact_id,
@@ -282,9 +283,17 @@ class EmailIngestionService:
         classification: ClassificationSummary | None = None,
         error_message: str | None = None,
         details: dict[str, Any] | None = None,
+        analysis: Any = None,
     ) -> None:
         if not self.settings.audit_enabled:
             return
+
+        ocr_text = analysis.ocr_text if analysis and hasattr(analysis, "ocr_text") else None
+        rule_result = analysis.rule_result if analysis and hasattr(analysis, "rule_result") else None
+        llm_result = analysis.llm_result if analysis and hasattr(analysis, "llm_result") else None
+        decision_reason = classification.reasoning if classification else None
+        final_decision = classification.category if classification else None
+        processing_time_ms = getattr(analysis, "processing_time_ms", None) if analysis else None
 
         self.audit_repository.record_event(
             event_type=event_type,
@@ -299,6 +308,12 @@ class EmailIngestionService:
             confidence=classification.confidence if classification else None,
             error_message=error_message,
             details=details,
+            ocr_text=ocr_text,
+            rule_result=rule_result,
+            llm_result=llm_result,
+            final_decision=final_decision,
+            decision_reason=decision_reason,
+            processing_time_ms=processing_time_ms,
         )
 
     @staticmethod

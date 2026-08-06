@@ -1,0 +1,38 @@
+{
+  "title": "التصنيف والذكاء الاصطناعي",
+  "description": "قواعد التوجيه والعرض المعاين الفوري للتصنيف الهجين عبر API التحليل.",
+  "provider": "المحرك / المزود",
+  "ocr": "التعرف الضوئي (OCR)",
+  "minConfidence": "الحد الأدنى للثقة",
+  "openai": "OpenAI / النموذج المحلي",
+  "openaiConfigured": "متهيأ",
+  "openaiNotConfigured": "غير متهيأ",
+  "routingRules": "قواعد التوجيه والتصنيف",
+  "routingRulesSource": "تم التحميل من GET /api/v1/analysis/routing-rules",
+  "keywords": "الكلمات المفتاحية: {{value}}",
+  "defaultFallback": "الخيار الافتراضي",
+  "doctypeKeywords": "كلمات نوع المستند: {{keywords}} · المعرف الافتراضي {{id}}",
+  "playground": "مختبر تجربة التصنيف",
+  "playgroundSource": "POST /api/v1/analysis/classify",
+  "placeholders": {
+    "sender": "البريد الإلكتروني للمرسل",
+    "subject": "موضوع المستند / البريد",
+    "body": "نص المستند أو الرسالة"
+  },
+  "samples": {
+    "subject": "فاتورة مزود الخدمات لشهر يناير",
+    "body": "تجدون برفقه الفاتورة رقم FAC-2026-014 الخاصة بخدمات تكنولوجيا المعلومات والتسديد المطلوب.",
+    "sender": "accounting@supplier.com"
+  },
+  "decision": "قرار التصنيف والقرار النهائي",
+  "fields": {
+    "category": "الفئة",
+    "destination": "الجهة الوجهة (القسم)",
+    "doctype": "نوع المستند",
+    "confidence": "نسبة الثقة",
+    "method": "طريقة التصنيف"
+  },
+  "noReasoning": "لم يتم إرجاع تعليل من نموذج التصنيف.",
+  "ocrSource": "مصدر التعرف الضوئي (OCR): {{source}}",
+  "preview": "معاينة النص: {{text}}"
+}

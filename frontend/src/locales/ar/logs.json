@@ -1,0 +1,22 @@
+{
+  "title": "سجلات التدقيق للنظام",
+  "description": "المخطط الزمني للأحداث من GET /api/v1/audit/events.",
+  "timelineTitle": "المخطط الزمني للتدقيق",
+  "eventsCount": "{{count}} حدث تدقيق",
+  "auditDisabled": "تسجيل التدقيق معطل",
+  "searchPlaceholder": "البحث في سجلات التدقيق...",
+  "maarchResource": "مورد نظام مارس #{{id}}",
+  "csvHeaders": {
+    "timestamp": "الطابع الزمني",
+    "level": "المستوى",
+    "subject": "الموضوع",
+    "sender": "المرسل",
+    "message": "الرسالة / الحدث",
+    "maarchId": "معرف مارس",
+    "error": "تفاصيل الخطأ"
+  },
+  "empty": {
+    "title": "لا توجد أحداث في السجل",
+    "description": "ستظهر أحداث التدقيق هنا بمجرد معالجة الرسائل والمستندات."
+  }
+}

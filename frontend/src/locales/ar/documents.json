@@ -1,0 +1,32 @@
+{
+  "title": "المستندات المعالجة",
+  "description": "سجل عمليات الاستيراد والتوجيه الناجحة من سجل التدقيق.",
+  "registryTitle": "سجل المستندات",
+  "registryCount": "{{count}} مستند معالج",
+  "searchPlaceholder": "البحث حسب المرجع، الموضوع، المرسل، معرف مارس...",
+  "columns": {
+    "reference": "المرجع",
+    "subject": "الموضوع",
+    "sender": "المرسل",
+    "destination": "الجهة الوجهة",
+    "maarchId": "معرف مارس (Res ID)",
+    "processingDate": "تاريخ المعالجة",
+    "category": "الفئة",
+    "confidence": "نسبة الثقة",
+    "status": "الحالة"
+  },
+  "csvHeaders": {
+    "reference": "المرجع",
+    "subject": "الموضوع",
+    "sender": "المرسل",
+    "destination": "الجهة الوجهة",
+    "maarchId": "معرف مارس",
+    "processingDate": "تاريخ المعالجة",
+    "category": "الفئة",
+    "confidence": "نسبة الثقة"
+  },
+  "empty": {
+    "title": "لا توجد مستندات معالجة",
+    "description": "تظهر المستندات هنا بعد معالجة البريد الإلكتروني بنجاح وتوجيهه إلى نظام مارس."
+  }
+}

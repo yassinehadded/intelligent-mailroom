@@ -30,6 +30,8 @@ def analysis_status() -> dict[str, Any]:
         "ocr_tesseract_enabled": settings.ocr_tesseract_enabled,
         "ai_enabled": settings.ai_enabled,
         "ai_provider": settings.ai_provider,
+        "ollama_base_url": settings.ollama_base_url,
+        "ollama_model": settings.ollama_model,
         "classification_min_confidence": settings.classification_min_confidence,
         "openai_configured": bool(settings.openai_api_key),
     }

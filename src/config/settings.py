@@ -41,7 +41,11 @@ class Settings(BaseSettings):
 
     # AI / Classification
     ai_enabled: bool = True
-    ai_provider: str = "rules"
+    ai_provider: str = "hybrid"
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_docker_url: str | None = None
+    ollama_model: str = "qwen2.5:7b"
+    ollama_timeout: int = 60
     openai_api_key: str | None = None
     openai_model: str = "gpt-4o-mini"
     openai_base_url: str | None = None
@@ -60,7 +64,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=False
+        case_sensitive=False,
+        extra="ignore",
     )
 
 
